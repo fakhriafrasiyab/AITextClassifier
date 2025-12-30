@@ -1,0 +1,28 @@
+# Python virtual environments
+.venv/
+venv/
+env/
+bin/
+lib/
+include/
+
+# PyCharm / JetBrains settings
+.idea/
+*.iws
+*.iml
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Scikit-learn / Data Science specific
+.ipynb_checkpoints/
+*.csv
+*.joblib
+*.pkl
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
