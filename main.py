@@ -1,3 +1,6 @@
+import joblib
+
+
 texts = [
     "I love this product",
     "This is amazing",
@@ -53,9 +56,8 @@ def train_model(texts, labels):
     model = MultinomialNB()
     model.fit(X, labels)
 
-    predictions = model.predict(X)
-    accuracy = accuracy_score(labels, predictions)
-    print("Training accuracy:", accuracy)
+    joblib.dump(model, "model.joblib")
+    joblib.dump(vectorizer, "vectorizer.joblib")
 
     return model, vectorizer
 
