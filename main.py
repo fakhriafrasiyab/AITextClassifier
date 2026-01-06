@@ -22,25 +22,42 @@ labels = [
 
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
+from sklearn.metrics import accuracy_score
 
 
-vectorizer = TfidfVectorizer()
-X = vectorizer.fit_transform(texts)
-print(X.toarray())
+# vectorizer = TfidfVectorizer()
+# X = vectorizer.fit_transform(texts)
+# print(X.toarray())
+#
+# model = MultinomialNB()
+# model.fit(X, labels)
+# print("Model trained!")
+#
+#
+# test_text = ["I absolutely love this"]
+# test_vector = vectorizer.transform(test_text)
+# prediction = model.predict(test_vector)
+# print("Prediction:", prediction[0])
+#
+#
+# user_input = input("Write a sentence: ")
+# test_vector = vectorizer.transform([user_input])
+# prediction = model.predict(test_vector)
+# print("AI thinks:", prediction[0])
 
-model = MultinomialNB()
-model.fit(X, labels)
-print("Model trained!")
 
+def train_model(texts, labels):
+    vectorizer = TfidfVectorizer()
+    X = vectorizer.fit_transform(texts)
 
-test_text = ["I absolutely love this"]
-test_vector = vectorizer.transform(test_text)
-prediction = model.predict(test_vector)
-print("Prediction:", prediction[0])
+    model = MultinomialNB()
+    model.fit(X, labels)
 
+    predictions = model.predict(X)
+    accuracy = accuracy_score(labels, predictions)
+    print("Training accuracy:", accuracy)
 
-user_input = input("Write a sentence: ")
-test_vector = vectorizer.transform([user_input])
-prediction = model.predict(test_vector)
-print("AI thinks:", prediction[0])
+    return model, vectorizer
+
+model, vectorizer = train_model(texts, labels)
 
