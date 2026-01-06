@@ -1,4 +1,5 @@
 import joblib
+import os
 
 
 texts = [
@@ -61,5 +62,17 @@ def train_model(texts, labels):
 
     return model, vectorizer
 
-model, vectorizer = train_model(texts, labels)
 
+
+def load_model():
+    model =  joblib.load("model.joblib")
+    vectorizer = joblib.load("vectorizer.joblib")
+    return model, vectorizer
+
+
+if os.path.exists("model.joblib"):
+    model, vectorizer = load_model()
+    print("Model loaded from disk.")
+else:
+    model, vectorizer = train_model(texts, labels)
+    print("Model trained and saved to disk.")
